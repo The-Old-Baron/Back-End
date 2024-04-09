@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using OldBarom.Core.Application.Interfaces.MyLinkList;
 
 namespace OldBarom.Web.API.Controllers.MyLinkList
 {
@@ -7,7 +6,6 @@ namespace OldBarom.Web.API.Controllers.MyLinkList
         [ApiController]
     public class CategoryController : ControllerBase
     {
-        private readonly ICategoryService _categoryService;
 
     }
 }

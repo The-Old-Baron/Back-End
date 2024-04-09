@@ -8,15 +8,7 @@ using OldBarom.Infra.Data.Context;
 using OldBarom.Infra.Data.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using OldBarom.Infra.IoC.Services;
-using OldBarom.Core.Domain.Repository.Basic;
-using OldBarom.Infra.Data.Repository.Basic;
-using OldBarom.Core.Application.Interfaces.Bases;
-using OldBarom.Core.Application.Services.Basic;
 using AutoMapper;
-using OldBarom.Core.Domain.Repository.Portifolio;
-using OldBarom.Infra.Data.Repository.Portifolio;
-using OldBarom.Core.Domain.Repository.TeamController;
-using OldBarom.Infra.Data.Repository.TeamController;
 namespace OldBarom.Infra.IoC
 {
     public static class DependecyInjection
@@ -43,25 +35,6 @@ namespace OldBarom.Infra.IoC
             services.AddScoped<IAuthenticate, AuthenticateService>();
             services.AddScoped<ISeedUserRoleInitial, SeedUserRoleInitial>();
             services.AddScoped<ISeedWorldInitial, SeedWorldInitial>();
-
-            // Basic Dependecy injection
-            services.AddScoped<IRegionsRepository, RegionsRepository>();
-            services.AddScoped<ICityRepository, CitiesRepository>();
-            services.AddScoped<ICountryStateRepository, CountryStateRepository>();
-            services.AddScoped<ICountriesRepository, CountriesRepository>();
-
-            services.AddScoped<IRegionsService, RegionsServices>();
-            services.AddScoped<ICitiesService, CitiesServices>();
-            services.AddScoped<ICountryStateRepository, CountryStateRepository>();
-            services.AddScoped<ICountriesService, CountriesServices>();
-
-
-            // Portifolio Dependency Injection
-            services.AddScoped<IProjectsRepository, ProjectsRepository>();
-
-            // Team Controller
-            services.AddScoped<ITeamCategoriesRepository, TeamCategoriesRepository>();
-            services.AddScoped<ITeamRepository, TeamRespository>();
 
             var myhandlers = AppDomain.CurrentDomain.Load("OldBarom.Core.Application");
 
