@@ -1,6 +1,4 @@
-﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
-using OldBarom.Core.Application.Interfaces.MyLinkList;
+﻿using Microsoft.AspNetCore.Mvc;
 
 namespace OldBarom.Web.API.Controllers.MyLinkList
 {
@@ -8,7 +6,6 @@ namespace OldBarom.Web.API.Controllers.MyLinkList
         [ApiController]
     public class CategoryController : ControllerBase
     {
-        private readonly ICategoryService _categoryService;
 
     }
 }

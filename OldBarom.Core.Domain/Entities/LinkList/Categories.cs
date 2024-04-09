@@ -1,13 +1,7 @@
-﻿using OldBarom.Core.Domain.Account;
-using OldBarom.Core.Domain.Validation;
+﻿using OldBarom.Core.Domain.Validation;
 using OldBarom.Infra.Data.Identity;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace OldBarom.Core.Domain.Entities.LinkList
 {

@@ -1,10 +1,5 @@
 ﻿using OldBarom.Infra.Data.Identity;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace OldBarom.Core.Domain.Entities.Portifolio
 {
@@ -22,10 +17,10 @@ namespace OldBarom.Core.Domain.Entities.Portifolio
         public DateTime CreatedAt { get; set; }
         public DateTime UpdatedAt { get; set; }
         public bool IsLocked { get; set; }
-        public string Version { get; set; }
-        public string ApplicationUserIdOwner { get; set; }
+        public string? Version { get; set; }
+        public string? ApplicationUserIdOwner { get; set; }
         public virtual ApplicationUser? ApplicationUser { get; set; }
-        public Dictionary<int,ProjectInformations> ProjectInformations { get; set; }
+        public Dictionary<int,ProjectInformations>? ProjectInformations { get; set; }
         
         
     }

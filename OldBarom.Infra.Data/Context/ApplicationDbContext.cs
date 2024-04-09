@@ -6,7 +6,6 @@ using OldBarom.Core.Domain.Entities.LinkList;
 using OldBarom.Core.Domain.Entities.Portifolio;
 using OldBarom.Core.Domain.Entities.TeamController;
 using OldBarom.Infra.Data.Identity;
-using OldBarom.Infra.Data.Repository.Portifolio;
 using Newtonsoft.Json;
 namespace OldBarom.Infra.Data.Context
 {

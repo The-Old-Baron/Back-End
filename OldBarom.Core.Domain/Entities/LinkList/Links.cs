@@ -1,15 +1,4 @@
-﻿using OldBarom.Core.Domain.Account;
-using OldBarom.Core.Domain.Validation;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
-using System.Drawing;
-using static System.Net.Mime.MediaTypeNames;
-using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel.DataAnnotations.Schema;
 using OldBarom.Infra.Data.Identity;
 
 namespace OldBarom.Core.Domain.Entities.LinkList
