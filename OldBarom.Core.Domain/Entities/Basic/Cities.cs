@@ -11,11 +11,11 @@ namespace OldBarom.Core.Domain.Entities.Basic
         public int Id { get; private set; }
         [Required]
         [MaxLength(100)]
-        public string Name { get; private set; }
+        public string? Name { get; private set; }
         [Required]
         [MaxLength(100)]
         public int StateId { get; private set; }
-        public virtual CountryStates State { get; private set; }
+        public virtual CountryStates? State { get; private set; }
         public DateTime CreatedAt { get; private set; }
         public DateTime UpdatedAt { get; private set; }
         

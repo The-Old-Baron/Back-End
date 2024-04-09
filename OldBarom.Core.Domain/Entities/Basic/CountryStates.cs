@@ -10,14 +10,12 @@ namespace OldBarom.Core.Domain.Entities.Basic
         public int Id { get; private set; }
         [Required]
         [MaxLength(100)]
-        public string Name { get; private set; }
+        public string? Name { get; private set; }
         [Required]
         [MaxLength(100)]
         public int CountryId { get; private set; }
-        public virtual Countries Country { get; private set; }
+        public virtual Countries? Country { get; private set; }
         public DateTime CreatedAt { get; private set; }
         public DateTime UpdatedAt { get; private set; }
-       
-       
     }
 }

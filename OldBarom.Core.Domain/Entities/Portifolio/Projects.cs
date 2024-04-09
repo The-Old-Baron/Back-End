@@ -17,10 +17,10 @@ namespace OldBarom.Core.Domain.Entities.Portifolio
         public DateTime CreatedAt { get; set; }
         public DateTime UpdatedAt { get; set; }
         public bool IsLocked { get; set; }
-        public string Version { get; set; }
-        public string ApplicationUserIdOwner { get; set; }
+        public string? Version { get; set; }
+        public string? ApplicationUserIdOwner { get; set; }
         public virtual ApplicationUser? ApplicationUser { get; set; }
-        public Dictionary<int,ProjectInformations> ProjectInformations { get; set; }
+        public Dictionary<int,ProjectInformations>? ProjectInformations { get; set; }
         
         
     }

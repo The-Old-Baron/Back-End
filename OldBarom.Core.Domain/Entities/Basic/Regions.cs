@@ -11,10 +11,10 @@ namespace OldBarom.Core.Domain.Entities.Basic
         public int Id { get; set; }
         [Required]
         [MaxLength(100)]
-        public string Name { get; set; }
+        public string? Name { get; set; }
         [Required]
         [MaxLength(10)]
-        public string Code { get; set; }
+        public string? Code { get; set; }
         public DateTime CreatedAt { get; set; }
         public DateTime UpdatedAt { get; set; }
        
