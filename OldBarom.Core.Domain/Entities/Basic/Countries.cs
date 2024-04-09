@@ -70,4 +70,4 @@ namespace OldBarom.Core.Domain.Entities.Basic
         }
     }
 }
-}
+
