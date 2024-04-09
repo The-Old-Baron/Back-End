@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using OldBarom.Core.Domain.Validation;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace OldBarom.Core.Domain.Entities.Basic
@@ -32,5 +33,41 @@ namespace OldBarom.Core.Domain.Entities.Basic
         public virtual Regions? Regions { get; private set; }
         public DateTime CreatedAt { get; private set; }
         public DateTime UpdatedAt { get; private set; }
+
+        public Countries(string name, string iSO3, string numericCode, string iSO2, string currency, string currencyName, int regionId)
+        {
+            Name = name;
+            ISO3 = iSO3;
+            NumericCode = numericCode;
+            ISO2 = iSO2;
+            Currency = currency;
+            CurrencyName = currencyName;
+            RegionId = regionId;
+            CreatedAt = DateTime.Now;
+            UpdatedAt = DateTime.Now;
+        }
+
+        public Countries()
+        {
+
+        }
+        private void ValidateDomain()
+        {
+            if (string.IsNullOrEmpty(Name))
+                throw new DomainExceptionValidation("Name is required");
+            if (string.IsNullOrEmpty(ISO3))
+                throw new DomainExceptionValidation("ISO3 is required");
+            if (string.IsNullOrEmpty(NumericCode))
+                throw new DomainExceptionValidation("NumericCode is required");
+            if (string.IsNullOrEmpty(ISO2))
+                throw new DomainExceptionValidation("ISO2 is required");
+            if (string.IsNullOrEmpty(Currency))
+                throw new DomainExceptionValidation("Currency is required");
+            if (string.IsNullOrEmpty(CurrencyName))
+                throw new DomainExceptionValidation("CurrencyName is required");
+            if (RegionId == 0)
+                throw new DomainExceptionValidation("RegionId is required");
+        }
     }
+}
 }
