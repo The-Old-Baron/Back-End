@@ -1,6 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using OldBarom.Core.Domain.Validation;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-
 namespace OldBarom.Core.Domain.Entities.Basic
 {
     [Table("Cities", Schema = "Basic")]
@@ -19,5 +19,25 @@ namespace OldBarom.Core.Domain.Entities.Basic
         public DateTime CreatedAt { get; private set; }
         public DateTime UpdatedAt { get; private set; }
         
+        public Cities()
+        {
+            CreatedAt = DateTime.Now;
+            UpdatedAt = DateTime.Now;
+        }
+        public Cities(string name, int stateId)
+        {
+            Name = name;
+            StateId = stateId;
+            CreatedAt = DateTime.Now;
+            UpdatedAt = DateTime.Now;
+            DomainValidation();
+        }
+        private void DomainValidation()
+        {
+            if (string.IsNullOrEmpty(Name))
+                throw new DomainExceptionValidation("Name is required");
+            if (StateId <= 0)
+                throw new DomainExceptionValidation("State is required");
+        }
     }
 }
