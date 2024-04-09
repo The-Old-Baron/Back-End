@@ -1,10 +1,5 @@
 ﻿using OldBarom.Infra.Data.Identity;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace OldBarom.Core.Domain.Entities.Portifolio
 {

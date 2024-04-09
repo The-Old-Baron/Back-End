@@ -1,7 +1,5 @@
 ﻿using OldBarom.Core.Domain.Entities.Basic;
 using OldBarom.Core.Domain.Validation;
-using System;
-using Xunit;
 
 namespace OldBarom.Core.Domain.Test.Basic
 {

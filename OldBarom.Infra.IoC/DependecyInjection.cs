@@ -17,7 +17,6 @@ using OldBarom.Core.Domain.Repository.Portifolio;
 using OldBarom.Infra.Data.Repository.Portifolio;
 using OldBarom.Core.Domain.Repository.TeamController;
 using OldBarom.Infra.Data.Repository.TeamController;
-using OldBarom.Core.Domain.Entities.TeamController;
 namespace OldBarom.Infra.IoC
 {
     public static class DependecyInjection

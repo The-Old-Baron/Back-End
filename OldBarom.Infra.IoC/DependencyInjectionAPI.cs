@@ -6,11 +6,6 @@ using OldBarom.Core.Application.Mappings;
 using OldBarom.Core.Domain.Account;
 using OldBarom.Infra.Data.Context;
 using OldBarom.Infra.Data.Identity;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace OldBarom.Infra.IoC
 {

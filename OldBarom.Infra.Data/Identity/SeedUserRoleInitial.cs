@@ -1,10 +1,5 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using OldBarom.Core.Domain.Account;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace OldBarom.Infra.Data.Identity
 {
