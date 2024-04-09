@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using OldBarom.Core.Domain.Validation;
 
 namespace OldBarom.Core.Domain.Entities.Basic
 {
@@ -17,5 +18,26 @@ namespace OldBarom.Core.Domain.Entities.Basic
         public virtual Countries? Country { get; private set; }
         public DateTime CreatedAt { get; private set; }
         public DateTime UpdatedAt { get; private set; }
+
+        protected CountryStates()
+        {
+            CreatedAt = DateTime.Now;
+            UpdatedAt = DateTime.Now;
+        }
+        public CountryStates(string name, int countryId)
+        {
+            Name = name;
+            CountryId = countryId;
+            CreatedAt = DateTime.Now;
+            UpdatedAt = DateTime.Now;
+            DomainValidation();
+        }
+        private void DomainValidation()
+        {
+            if (string.IsNullOrEmpty(Name))
+                throw new DomainExceptionValidation("Name is required");
+            if (CountryId <= 0)
+                throw new DomainExceptionValidation("Country is required");
+        }   
     }
 }

@@ -1,6 +1,7 @@
 ﻿
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using OldBarom.Core.Domain.Validation;
 
 namespace OldBarom.Core.Domain.Entities.Basic
 {
@@ -17,6 +18,28 @@ namespace OldBarom.Core.Domain.Entities.Basic
         public string? Code { get; set; }
         public DateTime CreatedAt { get; set; }
         public DateTime UpdatedAt { get; set; }
+
+        public Regions(string name, string code)
+        {
+            Name = name;
+            Code = code;
+            CreatedAt = DateTime.Now;
+            UpdatedAt = DateTime.Now;
+            DomainValidation();
+        }
+        protected Regions()
+        {
+            CreatedAt = DateTime.Now;
+            UpdatedAt = DateTime.Now;
+        }
+        
+        private void DomainValidation()
+        {
+            if (string.IsNullOrEmpty(Name))
+                throw new DomainExceptionValidation("Name is required");
+            if (string.IsNullOrEmpty(Code))
+                throw new DomainExceptionValidation("Code is required");
+        }
        
     }
 }

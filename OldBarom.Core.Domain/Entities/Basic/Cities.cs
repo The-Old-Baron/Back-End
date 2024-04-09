@@ -19,7 +19,7 @@ namespace OldBarom.Core.Domain.Entities.Basic
         public DateTime CreatedAt { get; private set; }
         public DateTime UpdatedAt { get; private set; }
         
-        public Cities()
+        protected Cities()
         {
             CreatedAt = DateTime.Now;
             UpdatedAt = DateTime.Now;

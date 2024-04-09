@@ -17,7 +17,7 @@ namespace OldBarom.Core.Domain.Entities.Basic
         public virtual Cities? City { get; private set; }
         [Required]
         public string? ZipCode { get; private set; }
-        public Address()
+        protected Address()
         {
             Id = Guid.NewGuid();
         }
