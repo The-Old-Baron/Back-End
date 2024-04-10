@@ -18,6 +18,7 @@ namespace OldBarom.Core.Domain.Entities.Basic
         {
             UserID = userID;
             AddressID = addressID;
+            DomainValidation();
         }
         protected UserAddress()
         {

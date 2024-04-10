@@ -45,6 +45,7 @@ namespace OldBarom.Core.Domain.Entities.Basic
             RegionId = regionId;
             CreatedAt = DateTime.Now;
             UpdatedAt = DateTime.Now;
+            ValidateDomain();
         }
 
         protected Countries()
