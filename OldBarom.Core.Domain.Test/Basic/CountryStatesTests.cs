@@ -1,7 +1,7 @@
 using OldBarom.Core.Domain.Entities.Basic;
 using OldBarom.Core.Domain.Validation;
 
-namespace OldBarom.Core.Domain.Test.Basic{
+namespace OldBarom.Core.Domain.Entities.Basic.Tests{
     public class CountryStatesTests{
         [Fact(DisplayName = "With Empty Name")]
         public void DomainValidation_WithEmptyCountryName_ShouldThrowException()

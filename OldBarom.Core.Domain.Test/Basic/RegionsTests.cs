@@ -1,7 +1,7 @@
 using OldBarom.Core.Domain.Entities.Basic;
 using OldBarom.Core.Domain.Validation;
 
-namespace OldBarom.Core.Domain.Test{
+namespace OldBarom.Core.Domain.Entities.Basic.Tests{
     public class RegionsTests{
         [Fact(DisplayName = "With Null Name")]
         public void DomainValidation_WithNullName()

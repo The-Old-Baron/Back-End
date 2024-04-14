@@ -36,7 +36,7 @@ namespace OldBarom.Core.Domain.Entities.Basic.Tests
         public void ValidateDomain_Throws_Exception_When_Name_Is_Null()
         {
             // Arrange
-            var ex = Assert.Throws<DomainExceptionValidation>(() => new Countries(null, "TST", "123", "TS", "TSC", "Test Currency", 1));
+            var ex = Assert.Throws<DomainExceptionValidation>(() => new Countries(string.Empty, "TST", "123", "TS", "TSC", "Test Currency", 1));
             Assert.Equal("Name is required", ex.Message);
         }
 

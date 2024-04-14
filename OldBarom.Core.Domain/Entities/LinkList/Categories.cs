@@ -24,13 +24,17 @@ namespace OldBarom.Core.Domain.Entities.LinkList
         public string? ApplicationUserId { get; set; }
         public virtual ApplicationUser? ApplicationUser { get; set; }
         
+        protected Categories()
+        {
+        }
         public Categories(string name, string description, string applicationUserId)
         {
             Name = name;
             Description = description;
             ApplicationUserId = applicationUserId;
+            Validate(name, description, applicationUserId);
         }
-        private void Validate(string name, string description)
+        private void Validate(string name, string description, string applicationUserId)
         {
             if(name.Length < 3 || name.Length > 50)
             {
@@ -39,6 +43,11 @@ namespace OldBarom.Core.Domain.Entities.LinkList
             if(description.Length > 100)
             {
                 throw new DomainExceptionValidation("Description must be less than 100 characters");
+            }
+            
+            if(string.IsNullOrWhiteSpace(applicationUserId))
+            {
+                throw new DomainExceptionValidation("Application User Error");
             }
         }
     }
