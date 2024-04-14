@@ -1,7 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using OldBarom.Core.Domain.Validation;
-
 namespace OldBarom.Core.Domain.Entities.Basic
 {
     [Table("CountryStates", Schema = "Basic")]
@@ -18,7 +17,6 @@ namespace OldBarom.Core.Domain.Entities.Basic
         public virtual Countries? Country { get; private set; }
         public DateTime CreatedAt { get; private set; }
         public DateTime UpdatedAt { get; private set; }
-
         protected CountryStates()
         {
             CreatedAt = DateTime.Now;
@@ -38,6 +36,6 @@ namespace OldBarom.Core.Domain.Entities.Basic
                 throw new DomainExceptionValidation("Name is required");
             if (CountryId <= 0)
                 throw new DomainExceptionValidation("Country is required");
-        }   
+        }
     }
 }

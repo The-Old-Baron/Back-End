@@ -2,44 +2,35 @@
 using OldBarom.Core.Domain.Entities.Basic;
 using System;
 using OldBarom.Core.Domain.Validation;
+
 namespace OldBarom.Core.Domain.Entities.Basic.Tests
 {
     public class CitiesTests
     {
-        [Fact(DisplayName = "With Valid Parameters")]
-        public void Cities_Constructor_ShouldCreateObject()
+
+        [Fact]
+        public void Cities_Constructor_SetsPropertiesAndDates()
         {
             // Arrange
-            string name = "Test City";
-            int stateId = 1;
+            var name = "Test City";
+            var stateId = 1;
 
             // Act
             var city = new Cities(name, stateId);
 
             // Assert
-            Assert.NotNull(city);
             Assert.Equal(name, city.Name);
             Assert.Equal(stateId, city.StateId);
+            Assert.Equal(DateTime.Now.Date, city.CreatedAt.Date);
+            Assert.Equal(DateTime.Now.Date, city.UpdatedAt.Date);
         }
 
-        [Fact(DisplayName = "With Empty Name")]
-        public void Cities_Constructor_ShouldThrowException_WhenNameIsEmpty()
+        [Theory]
+        [InlineData(null, 1)]
+        [InlineData("", 1)]
+        [InlineData("Test City", 0)]
+        public void DomainValidation_InvalidParameters_ThrowsException(string name, int stateId)
         {
-            // Arrange
-            string name = string.Empty;
-            int stateId = 1;
-
-            // Act & Assert
-            Assert.Throws<DomainExceptionValidation>(() => new Cities(name, stateId));
-        }
-
-        [Fact(DisplayName = "With State ID Zero")]
-        public void Cities_Constructor_ShouldThrowException_WhenStateIdIsZero()
-        {
-            // Arrange
-            string name = "Test City";
-            int stateId = 0;
-
             // Act & Assert
             Assert.Throws<DomainExceptionValidation>(() => new Cities(name, stateId));
         }

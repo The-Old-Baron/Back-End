@@ -50,22 +50,6 @@ namespace OldBarom.Core.Domain.Entities.Basic
 
         protected Countries()
         {
-            CreatedAt = DateTime.Now;
-            UpdatedAt = DateTime.Now;
-        }
-        public Countries(int id, string name, string iSO3, string numericCode, string iSO2, string currency, string currencyName, int regionId)
-        {
-            Id = id;
-            Name = name;
-            ISO3 = iSO3;
-            NumericCode = numericCode;
-            ISO2 = iSO2;
-            Currency = currency;
-            CurrencyName = currencyName;
-            RegionId = regionId;
-            CreatedAt = DateTime.Now;
-            UpdatedAt = DateTime.Now;
-            ValidateDomain();
         }
         private void ValidateDomain()
         {
@@ -86,4 +70,3 @@ namespace OldBarom.Core.Domain.Entities.Basic
         }
     }
 }
-

@@ -1,3 +1,6 @@
+using Xunit;
+using OldBarom.Core.Domain.Entities.Basic;
+using System;
 using OldBarom.Core.Domain.Validation;
 
 namespace OldBarom.Core.Domain.Entities.Basic.Tests

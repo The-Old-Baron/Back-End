@@ -8,46 +8,38 @@ namespace OldBarom.Core.Domain.Entities.Basic.Tests
     public class CountriesTests
     {
         [Fact]
-        public void Countries_Constructor_Should_Initialize_Correctly()
+        public void Countries_Constructor_Assigns_Values_Correctly()
         {
             // Arrange
             string name = "Test Country";
-            string iso3 = "TST";
+            string iSO3 = "TST";
             string numericCode = "123";
-            string iso2 = "TS";
-            string currency = "TST";
+            string iSO2 = "TS";
+            string currency = "TSC";
             string currencyName = "Test Currency";
             int regionId = 1;
 
             // Act
-            var country = new Countries(name, iso3, numericCode, iso2, currency, currencyName, regionId);
+            var country = new Countries(name, iSO3, numericCode, iSO2, currency, currencyName, regionId);
 
             // Assert
             Assert.Equal(name, country.Name);
-            Assert.Equal(iso3, country.ISO3);
+            Assert.Equal(iSO3, country.ISO3);
             Assert.Equal(numericCode, country.NumericCode);
-            Assert.Equal(iso2, country.ISO2);
+            Assert.Equal(iSO2, country.ISO2);
             Assert.Equal(currency, country.Currency);
             Assert.Equal(currencyName, country.CurrencyName);
             Assert.Equal(regionId, country.RegionId);
         }
 
         [Fact]
-        public void Countries_Constructor_Should_Throw_Exception_When_Name_Is_Null()
+        public void ValidateDomain_Throws_Exception_When_Name_Is_Null()
         {
             // Arrange
-            string name = null;
-            string iso3 = "TST";
-            string numericCode = "123";
-            string iso2 = "TS";
-            string currency = "TST";
-            string currencyName = "Test Currency";
-            int regionId = 1;
-
-            // Act & Assert
-            Assert.Throws<DomainExceptionValidation>(() => new Countries(name, iso3, numericCode, iso2, currency, currencyName, regionId));
+            var ex = Assert.Throws<DomainExceptionValidation>(() => new Countries(null, "TST", "123", "TS", "TSC", "Test Currency", 1));
+            Assert.Equal("Name is required", ex.Message);
         }
 
-        // Add more tests for other properties and methods...
+        // Add similar tests for ISO3, NumericCode, ISO2, Currency, CurrencyName, and RegionId
     }
 }

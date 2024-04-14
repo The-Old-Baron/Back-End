@@ -23,7 +23,7 @@ namespace OldBarom.Core.Domain.Entities.LinkList
         [Required]
         public string? ApplicationUserId { get; set; }
         public virtual ApplicationUser? ApplicationUser { get; set; }
-        protected Categories() { }
+        
         public Categories(string name, string description, string applicationUserId)
         {
             Name = name;

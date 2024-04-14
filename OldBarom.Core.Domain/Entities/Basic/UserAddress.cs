@@ -1,6 +1,6 @@
 ﻿using OldBarom.Infra.Data.Identity;
 using System.ComponentModel.DataAnnotations;
-using OldBarom.Core.Domain.Validation;
+
 namespace OldBarom.Core.Domain.Entities.Basic
 {
     public class UserAddress
@@ -13,22 +13,19 @@ namespace OldBarom.Core.Domain.Entities.Basic
         public Guid AddressID { get; set; }
         public virtual ApplicationUser? User { get; set; }
         public virtual Address? Address { get; set; }
-
+        protected UserAddress() { }
         public UserAddress(string userID, Guid addressID)
         {
             UserID = userID;
             AddressID = addressID;
-            DomainValidation();
+            DomainValidate();
         }
-        protected UserAddress()
-        {
-        }
-        private void DomainValidation()
+        private void DomainValidate()
         {
             if (string.IsNullOrEmpty(UserID))
-                throw new DomainExceptionValidation("UserID is required");
+                throw new Exception("UserID is required");
             if (AddressID == Guid.Empty)
-                throw new DomainExceptionValidation("AddressID is required");
+                throw new Exception("AddressID is required");
         }
     }
 }
