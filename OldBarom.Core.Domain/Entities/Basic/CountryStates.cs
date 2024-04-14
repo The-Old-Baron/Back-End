@@ -22,7 +22,7 @@ namespace OldBarom.Core.Domain.Entities.Basic
             CreatedAt = DateTime.Now;
             UpdatedAt = DateTime.Now;
         }
-        public CountryStates(string name, int countryId)
+        public CountryStates(int countryId, string name)
         {
             Name = name;
             CountryId = countryId;
