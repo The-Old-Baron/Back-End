@@ -23,7 +23,9 @@ namespace OldBarom.Infra.IoC
                 .AddDefaultTokenProviders();
 
             services.AddScoped<IAuthenticate, AuthenticateService>();
-
+            services.AddScoped<ISeedWorldInitial, SeedWorldInitial>();
+            services.AddScoped<ISeedUserRoleInitial, SeedUserRoleInitial>();
+            
             services.AddAutoMapper(typeof(DomainToDTOMappingProfile));
 
             var myhandlers = AppDomain.CurrentDomain.Load("OldBarom.Core.Application");

@@ -6,7 +6,5 @@
         void SeedCountries();
         void SeedStates();
         void SeedCities();
-        void SeedRegions();
-        void SeedSubRegions();
     }
 }
