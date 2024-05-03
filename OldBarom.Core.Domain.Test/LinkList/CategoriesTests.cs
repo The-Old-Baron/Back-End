@@ -20,8 +20,11 @@ namespace OldBarom.Core.Domain.Entities.LinkList.Tests{
         [Fact(DisplayName = "With Valid Data")]
         public void DomainValidation_WithValidData()
         {
-            var ex = Assert.Throws<DomainExceptionValidation>(()=>new Categories("ABC", "ABC", Guid.NewGuid().ToString()));
-            Assert.Null(ex);
+            var guid = Guid.NewGuid();
+            var Categories = new Categories("ABC", "ABC", guid.ToString());
+            Assert.Equal("ABC", Categories.Name);
+            Assert.Equal("ABC", Categories.Description);
+            Assert.Equal(guid.ToString(), Categories.ApplicationUserId);
         }
         public void DomainValidation_WithValidDataParameter()
         {

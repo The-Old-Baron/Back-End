@@ -36,19 +36,12 @@ namespace OldBarom.Core.Domain.Entities.LinkList
         }
         private void Validate(string name, string description, string applicationUserId)
         {
-            if(name.Length < 3 || name.Length > 50)
-            {
-                throw new DomainExceptionValidation("Name must be between 3 and 50 characters");
-            }
-            if(description.Length > 100)
-            {
-                throw new DomainExceptionValidation("Description must be less than 100 characters");
-            }
-            
-            if(string.IsNullOrWhiteSpace(applicationUserId))
-            {
-                throw new DomainExceptionValidation("Application User Error");
-            }
+            DomainExceptionValidation.When(string.IsNullOrEmpty(name), "Invalid Name. Name is required");
+            DomainExceptionValidation.When(name.Length < 3, "Invalid Name. Name must have at least 3 characters");
+            DomainExceptionValidation.When(name.Length > 50, "Invalid Name. Name must have a maximum of 50 characters");
+            DomainExceptionValidation.When(string.IsNullOrEmpty(description), "Invalid Description. Description is required");
+            DomainExceptionValidation.When(description.Length > 100, "Invalid Description. Description must have a maximum of 100 characters");
+            DomainExceptionValidation.When(string.IsNullOrEmpty(applicationUserId), "Invalid User ID. User ID is required");
         }
     }
 }
