@@ -31,11 +31,11 @@ jobs:
     - name: Publish
       run: dotnet publish --configuration Release --no-build
     
-    - name: Create Pull Request
-      uses: peter-evans/create-pull-request@v3
-      with:
-        token: ${{ secrets.GITHUB_TOKEN }}
-        commit-message: 'Update from publish'
-        title: 'Update from publish'
-        body: 'This is an auto-generated pull request.'
-        branch: 'publish-updates'
+    # - name: Create Pull Request
+    #   uses: peter-evans/create-pull-request@v3
+    #   with:
+    #     token: ${{ secrets.GITHUB_TOKEN }}
+    #     commit-message: 'Update from publish'
+    #     title: 'Update from publish'
+    #     body: 'This is an auto-generated pull request.'
+    #     branch: 'publish-updates'
