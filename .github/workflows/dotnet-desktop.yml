@@ -2,9 +2,9 @@ name: .NET Core CI
 
 on:
   push:
-    branches: [ master ]
+    branches: [ devl ]
   pull_request:
-    branches: [ master ]
+    branches: [ devl ]
 
 jobs:
   build:
@@ -30,3 +30,14 @@ jobs:
 
     - name: Publish
       run: dotnet publish --configuration Release --no-build
+
+    # Apos o build e publish cria um pull request para o main
+    - name: Create Pull Request
+      uses: peter-evans/create-pull-request@v3
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        commit-message: 'Automated PR'
+        title: 'Automated PR'
+        body: 'This is an automated PR.'
+        branch: 'main'
+        base: 'master'
