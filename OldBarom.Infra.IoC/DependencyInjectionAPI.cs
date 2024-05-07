@@ -6,6 +6,7 @@ using OldBarom.Core.Application.Mappings;
 using OldBarom.Core.Domain.Account;
 using OldBarom.Infra.Data.Context;
 using OldBarom.Infra.Data.Identity;
+using AutoMapper;
 
 namespace OldBarom.Infra.IoC
 {
@@ -14,10 +15,11 @@ namespace OldBarom.Infra.IoC
         public static IServiceCollection AddInfrastructureAPI(this IServiceCollection services,
             IConfiguration configuration)
         {
+            services.AddAutoMapper(typeof(DomainToDTOMappingProfile));
+            services.AddSingleton(new Mapper(new MapperConfiguration(cfg => cfg.AddProfile<DomainToDTOMappingProfile>())));
             services.AddDbContext<ApplicationDbContext>(options =>
              options.UseSqlServer(configuration.GetConnectionString("ApplicationDbContextConnection"
             ), b => b.MigrationsAssembly(typeof(ApplicationDbContext).Assembly.FullName)));
-
             services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
@@ -31,7 +33,7 @@ namespace OldBarom.Infra.IoC
             var myhandlers = AppDomain.CurrentDomain.Load("OldBarom.Core.Application");
             //services.AddMediatR(myhandlers);
             services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblies(myhandlers));
-
+            
             return services;
         }
     }
