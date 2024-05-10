@@ -1,14 +1,16 @@
-﻿using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Identity;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
 namespace OldBarom.Core.Domain.Account
 {
     public interface IAuthenticate
     {
-        Task<SignInResult> Authenticate(string email, string password);
-        Task<SignInResult> Authenticate(string email, string password, bool rememberMe, bool lockoutOnFailure);
-        Task<bool> RegisterUser(string email, string password);
-        Task<bool> ExternalLogin(string returnUrl, string email);
-        Task<List<AuthenticationScheme>> GetExternalLogin();
+        Task<bool> Authenticate(string username, string password);
+        Task<bool> RegisterUser(string username, string password);
         Task Logout();
+
     }
 }
