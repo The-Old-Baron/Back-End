@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using OldBarom.Core.Domain.Validation;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace OldBarom.Core.Domain.Entities.Systempunk
 {
