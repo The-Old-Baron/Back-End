@@ -2,9 +2,9 @@ name: .NET Core CI
 
 on:
   push:
-    branches: [ master ]
+    branches: [ devl ]
   pull_request:
-    branches: [ master ]
+    branches: [ devl ]
 
 jobs:
   build:
@@ -17,7 +17,7 @@ jobs:
     - name: Setup .NET Core
       uses: actions/setup-dotnet@v1
       with:
-        dotnet-version: 3.1.101
+        dotnet-version: 7.0.100
 
     - name: Install dependencies
       run: dotnet restore
@@ -30,3 +30,12 @@ jobs:
 
     - name: Publish
       run: dotnet publish --configuration Release --no-build
+    
+    # - name: Create Pull Request
+    #   uses: peter-evans/create-pull-request@v3
+    #   with:
+    #     token: ${{ secrets.GITHUB_TOKEN }}
+    #     commit-message: 'Update from publish'
+    #     title: 'Update from publish'
+    #     body: 'This is an auto-generated pull request.'
+    #     branch: 'publish-updates'
