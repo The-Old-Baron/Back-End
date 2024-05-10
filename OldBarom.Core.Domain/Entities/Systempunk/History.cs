@@ -26,9 +26,9 @@ namespace OldBarom.Core.Domain.Entities.Systempunk
         public History(int id, string name, string description, List<string> keywords,  Guid userOwnerId, Guid lastEditorID, DateTime publishDate, DateTime editedTime, string content, List<Tag> tags)
         {
             ValidateDomain(name, description, keywords, userOwnerId, lastEditorID, content, tags);
+            Id = id;
             PublishDate = publishDate;
             EditedTime = editedTime;
-            
         }
         private void ValidateDomain(string Name, string Description, List<string> keywords, Guid userOwnerID, Guid lastEditorID, string content, List<Tag> tags)
         {
@@ -43,8 +43,8 @@ namespace OldBarom.Core.Domain.Entities.Systempunk
             DomainExceptionValidation.When(content.Length < 3, "Invalid - input is too short");
             DomainExceptionValidation.When(tags.Count < 1, "Invalid - input is required");
 
-            Name = Name;
-            Description = Description;
+            this.Name = Name;
+            this.Description = Description;
             this.keywords = keywords;
             UserOwnerId = userOwnerID;
             LastEditorID = lastEditorID;

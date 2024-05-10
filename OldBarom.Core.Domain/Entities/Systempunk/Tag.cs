@@ -25,7 +25,7 @@ namespace OldBarom.Core.Domain.Entities.Systempunk
             DomainExceptionValidation.When(string.IsNullOrEmpty(Description), "Invalid - input is required");
             DomainExceptionValidation.When(Description.Length < 3, "Invalid - input is too short");
 
-            Name = Name;
+            this.Name = Name;
             this.Description = Description;
         }
     }
