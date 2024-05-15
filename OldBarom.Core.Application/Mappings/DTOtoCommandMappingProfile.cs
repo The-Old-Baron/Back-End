@@ -9,11 +9,12 @@ using System.Threading.Tasks;
 
 namespace OldBarom.Core.Application.Mappings
 {
-    public class DomainToDTOMappingProfile : Profile
+    public class DTOtoCommandMappingProfile : Profile
     {
-        public DomainToDTOMappingProfile() { 
-            CreateMap<History, HistoryDTO>().ReverseMap();
-            CreateMap<Tag, TagDTO>().ReverseMap();
+        public DTOtoCommandMappingProfile()
+        {
+            CreateMap<HistoryDTO, History>();
+            CreateMap<TagDTO, Tag>();
         }
     }
 }

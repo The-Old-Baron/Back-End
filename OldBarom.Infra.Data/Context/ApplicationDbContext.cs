@@ -1,55 +1,26 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.ChangeTracking;
-using OldBarom.Core.Domain.Entities.Basic;
-using OldBarom.Core.Domain.Entities.LinkList;
-using OldBarom.Core.Domain.Entities.Portifolio;
-using OldBarom.Core.Domain.Entities.TeamController;
+using OldBarom.Core.Domain.Entities.Systempunk;
 using OldBarom.Infra.Data.Identity;
-using Newtonsoft.Json;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
 namespace OldBarom.Infra.Data.Context
 {
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
-        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
-        { }
+        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options) { }
 
-        // Basic
-        public DbSet<Cities> Cities { get; set; }
-        public DbSet<Countries> Countries { get; set; }
-        public DbSet<CountryStates> CountryStates { get; set; }
-        public DbSet<Regions> Regions { get; set; }
-        public DbSet<Address> Addresses { get; set; }
-        public DbSet<UserAddress> UserAddresses { get; set; }
-        // MyLinkList
-        public DbSet<Categories> Categories { get; set; }
-        public DbSet<Links> Links { get; set; }
-
-        // Portifolio
-        public DbSet<Projects> Projects { get; set; }
-
-        // Team
-        public DbSet<Team> Teams { get; set; }
-        public DbSet<TeamCategories> TeamCategories { get; set; }
+        public DbSet<History> Histories { get; set; }
+        public DbSet<Tag> Tags { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
             builder.ApplyConfigurationsFromAssembly(typeof(ApplicationDbContext).Assembly);
-
-            builder.Entity<Projects>()
-                .Property(F => F.ProjectInformations)
-                .HasConversion(
-                    v => JsonConvert.SerializeObject(v),
-                    v => JsonConvert.DeserializeObject<Dictionary<int, ProjectInformations>>(v),
-                    new ValueComparer<Dictionary<int, ProjectInformations>>(
-                        (c1, c2) => c1.SequenceEqual(c2),
-                        c => c.Aggregate(0, (a, v) => HashCode.Combine(a, v.GetHashCode())),
-                        c => c.ToDictionary(v => v.Key, v => v.Value)
-                        )
-                );
-            
         }
     }
-
 }

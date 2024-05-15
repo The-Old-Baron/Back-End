@@ -1,19 +1,22 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Models;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace OldBarom.Infra.IoC
 {
-    public static class DependencyInjectionSwagger
+    public static class DependecyInjectionSwagger
     {
         public static IServiceCollection AddInfrastructureSwagger(this IServiceCollection services)
         {
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Old Barom API", Version = "v1" });
-
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "CleanArchMVC.API", Version = "v1" });
                 c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme()
                 {
-                    //definir configuracoes
                     Name = "Authorization",
                     Type = SecuritySchemeType.ApiKey,
                     Scheme = "Bearer",
@@ -24,9 +27,9 @@ namespace OldBarom.Infra.IoC
                 });
 
                 c.AddSecurityRequirement(new OpenApiSecurityRequirement
-            {
-                  {
-                      new OpenApiSecurityScheme
+                {
+                    {
+                        new OpenApiSecurityScheme
                         {
                             Reference = new OpenApiReference
                             {
@@ -35,8 +38,8 @@ namespace OldBarom.Infra.IoC
                             }
                         },
                         new string[] {}
-                }
-            });
+                    }
+                });
             });
             return services;
         }
