@@ -2,7 +2,9 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using OldBarom.Core.Application.Interfaces.Systempunk;
 using OldBarom.Core.Application.Mappings;
+using OldBarom.Core.Application.Services.Systempunk;
 using OldBarom.Core.Domain.Account;
 using OldBarom.Core.Domain.Interfaces;
 using OldBarom.Infra.Data.Configure;
@@ -32,10 +34,14 @@ namespace OldBarom.Infra.IoC
             services.AddScoped<IHistoryRepository, HistoryRepository>();
             services.AddScoped<ITagRepository, TagRepository>();
 
+            services.AddScoped<IHistoryService, HistoryService>();
+            services.AddScoped<ITagService, TagService>();
+
             services.AddAutoMapper(typeof(DomainToDTOMappingProfile));
 
-            var myHandlers = AppDomain.CurrentDomain.Load("OldBarom.Core.Application");
-            //services.AddMediatR(myHandlers);
+            // Configure MediatR
+            //services.AddMediatR(Assembly.GetExecutingAssembly());
+
 
             return services;
         }

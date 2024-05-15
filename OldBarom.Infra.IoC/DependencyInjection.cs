@@ -34,8 +34,9 @@ namespace OldBarom.Infra.IoC
 
             services.AddAutoMapper(typeof(DomainToDTOMappingProfile));
 
-            var myHandlers = AppDomain.CurrentDomain.Load("OldBarom.Core.Application");
-            //services.AddMediatR(myHandlers);
+            // Configure MediatR 
+            //services.AddMediatR(Assembly.GetExecutingAssembly());
+            
 
             return services;
         }
