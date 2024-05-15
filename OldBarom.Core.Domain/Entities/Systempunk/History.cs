@@ -14,8 +14,8 @@ namespace OldBarom.Core.Domain.Entities.Systempunk
         public int Id { get; set; }
         public string Name { get; set; }
         public string Description {  get; set; }
-        public List<string> keywords { get; set; }
-        public List<int> tags { get; set; }
+        public List<string> Keywords { get; set; }
+        public List<int> TagsIDs { get; set; }
         public Guid UserOwnerId { get; set; }
         public Guid LastEditorID { get; set; }
         public DateTime PublishDate { get; set; }
@@ -45,7 +45,7 @@ namespace OldBarom.Core.Domain.Entities.Systempunk
 
             this.Name = Name;
             this.Description = Description;
-            this.keywords = keywords;
+            this.Keywords = keywords;
             UserOwnerId = userOwnerID;
             LastEditorID = lastEditorID;
             PublishDate = DateTime.Now;

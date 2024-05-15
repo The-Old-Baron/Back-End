@@ -27,7 +27,7 @@ namespace OldBarom.Core.Domain.Tests
             Assert.Equal(id, history.Id);
             Assert.Equal(name, history.Name);
             Assert.Equal(description, history.Description);
-            Assert.Equal(keywords, history.keywords);
+            Assert.Equal(keywords, history.Keywords);
             Assert.Equal(userOwnerId, history.UserOwnerId);
             Assert.Equal(lastEditorID, history.LastEditorID);
             Assert.Equal(publishDate, history.PublishDate);
