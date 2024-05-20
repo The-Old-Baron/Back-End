@@ -12,7 +12,7 @@ namespace OldBarom.Core.Domain.Tests
             var id = 1;
             var name = "Test Name";
             var description = "Test Description";
-            var keywords = new List<string> { "keyword1", "keyword2" };
+            var keywords = new List<Keyworkds> { new Keyworkds() { Id = 1, Name = "Nome" }, new Keyworkds() { Id = 2, Name = "Modelo" } };
             var userOwnerId = Guid.NewGuid();
             var lastEditorID = Guid.NewGuid();
             var publishDate = DateTime.Now;
@@ -44,7 +44,7 @@ namespace OldBarom.Core.Domain.Tests
         {
             // Arrange
             var description = "Test Description";
-            var keywords = new List<string> { "keyword1", "keyword2" };
+            var keywords = new List<Keyworkds> { new Keyworkds() { Id = 1, Name = "Nome"}, new Keyworkds() { Id = 2, Name = "Modelo" } };
             var userOwnerId = Guid.NewGuid();
             var lastEditorID = Guid.NewGuid();
             var content = "Test Content";

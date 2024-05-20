@@ -14,23 +14,24 @@ namespace OldBarom.Core.Domain.Entities.Systempunk
         public int Id { get; set; }
         public string Name { get; set; }
         public string Description {  get; set; }
-        public List<string> Keywords { get; set; }
-        public List<int> TagsIDs { get; set; }
+        public List<Keyworkds> Keywords { get; set; }
+        public List<Tag> Tags { get; set; }
         public Guid UserOwnerId { get; set; }
         public Guid LastEditorID { get; set; }
         public DateTime PublishDate { get; set; }
         public DateTime EditedTime { get; set; }
         public string Content {  get; set; }
-        public virtual List<Tag> Tags { get; set; }
-
-        public History(int id, string name, string description, List<string> keywords,  Guid userOwnerId, Guid lastEditorID, DateTime publishDate, DateTime editedTime, string content, List<Tag> tags)
+        public History()
+        {
+        }
+        public History(int id, string name, string description, List<Keyworkds> keywords,  Guid userOwnerId, Guid lastEditorID, DateTime publishDate, DateTime editedTime, string content, List<Tag> tags)
         {
             ValidateDomain(name, description, keywords, userOwnerId, lastEditorID, content, tags);
             Id = id;
             PublishDate = publishDate;
             EditedTime = editedTime;
         }
-        private void ValidateDomain(string Name, string Description, List<string> keywords, Guid userOwnerID, Guid lastEditorID, string content, List<Tag> tags)
+        private void ValidateDomain(string Name, string Description, List<Keyworkds> keywords, Guid userOwnerID, Guid lastEditorID, string content, List<Tag> tags)
         {
             DomainExceptionValidation.When(string.IsNullOrEmpty(Name), "Invalid - input is required");
             DomainExceptionValidation.When(Name.Length < 3, "Invalid - input is too short");
@@ -54,5 +55,10 @@ namespace OldBarom.Core.Domain.Entities.Systempunk
             Tags = tags;
         }
 
+    }
+    public class Keyworkds
+    {
+        public int Id { get; set; }
+        public string Name { get; set; }
     }
 }

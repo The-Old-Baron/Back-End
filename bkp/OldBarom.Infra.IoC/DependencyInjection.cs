@@ -3,13 +3,15 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using OldBarom.Core.Application.Interfaces.Systempunk;
 using OldBarom.Core.Application.Mappings;
-using OldBarom.Core.Domain.Account;
+using OldBarom.Core.Application.Services.Systempunk;
 using OldBarom.Core.Domain.Interfaces;
-using OldBarom.Infra.Data.Configure;
 using OldBarom.Infra.Data.Context;
 using OldBarom.Infra.Data.Identity;
 using OldBarom.Infra.Data.Repositories;
+using MediatR;
+using OldBarom.Core.Domain.Account;
 
 namespace OldBarom.Infra.IoC
 {
@@ -24,19 +26,10 @@ namespace OldBarom.Infra.IoC
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
 
-            services.ConfigureApplicationCookie(options => options.AccessDeniedPath = "/Account/Login");
-
             services.AddScoped<IAuthenticate, AuthenticateService>();
-            services.AddScoped<ISeedUserRoleInitial, UserConfigure>();
-
-            services.AddScoped<IHistoryRepository, HistoryRepository>();
-            services.AddScoped<ITagRepository, TagRepository>();
-
-            services.AddAutoMapper(typeof(DomainToDTOMappingProfile));
-
-            // Configure MediatR 
-            //services.AddMediatR(Assembly.GetExecutingAssembly());
             
+            var myHandler = AppDomain.CurrentDomain.Load("OldBarom.Core.Application");
+            services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblies(myHandler));
 
             return services;
         }

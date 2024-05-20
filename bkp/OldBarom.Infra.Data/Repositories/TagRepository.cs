@@ -2,11 +2,6 @@
 using OldBarom.Core.Domain.Entities.Systempunk;
 using OldBarom.Core.Domain.Interfaces;
 using OldBarom.Infra.Data.Context;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace OldBarom.Infra.Data.Repositories
 {

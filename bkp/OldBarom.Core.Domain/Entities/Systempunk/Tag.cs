@@ -9,6 +9,9 @@ namespace OldBarom.Core.Domain.Entities.Systempunk
         public int Id { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
+        public Tag()
+        {
+        }
         public Tag(string name, string Description)
         {
             ValidateDomain(name, Description);
