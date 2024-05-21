@@ -1,11 +1,13 @@
+using OldBarom.Core.Domain.Model.Base;
+
 namespace OldBarom.Core.Domain.Interface.Systempunk
 {
-    public interface IHistoryRepository
+    public interface ITagsRepository
     {
-        Task<IEnumerable<History>> GetHistories();
-        Task<History> GetHistory(int id);
-        Task AddHistory(History history);
-        Task UpdateHistory(History history);
-        Task DeleteHistory(int id);
+        Task<IEnumerable<Tags>> GetTags();
+        Task<Tags> GetTag(int id);
+        Task AddTag(Tags tag);
+        Task UpdateTag(Tags tag);
+        Task DeleteTag(int id);
     }
 }

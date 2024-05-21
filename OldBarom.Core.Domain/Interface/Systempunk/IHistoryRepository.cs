@@ -1,3 +1,5 @@
+using OldBarom.Core.Domain.Model.Systempunk;
+
 namespace OldBarom.Core.Domain.Interface.Systempunk
 {
     public interface IHistoryRepository

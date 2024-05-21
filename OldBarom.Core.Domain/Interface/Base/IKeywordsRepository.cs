@@ -1,11 +1,14 @@
+
+using OldBarom.Core.Domain.Model.Base;
+
 namespace OldBarom.Core.Domain.Interface.Systempunk
 {
-    public interface IHistoryRepository
+    public interface IKeywordsRepository
     {
-        Task<IEnumerable<History>> GetHistories();
-        Task<History> GetHistory(int id);
-        Task AddHistory(History history);
-        Task UpdateHistory(History history);
-        Task DeleteHistory(int id);
+        Task<IEnumerable<Keywords>> GetKeywords();
+        Task<Keywords> GetKeyword(int id);
+        Task AddKeyword(Keywords keyword);
+        Task UpdateKeyword(Keywords keyword);
+        Task DeleteKeyword(int id);
     }
 }
