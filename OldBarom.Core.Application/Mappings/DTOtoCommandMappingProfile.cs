@@ -1,12 +1,17 @@
+using AutoMapper;
+using OldBarom.Core.Application.DTOs.Base;
+using OldBarom.Core.Application.DTOs.Systempunk;
+using OldBarom.Core.Domain.Model.Base;
+using OldBarom.Core.Domain.Model.Systempunk;
+
 namespace OldBarom.Core.Application.Mappings
 {
-    public class DomainToDTOMappingProfile : Profile
+    public class DTOtoCommandMappingProfile : Profile
     {
-        public DomainToDTOMappingProfile()
+        public DTOtoCommandMappingProfile()
         {
-            CreateMap<History, HistoryDTO>()
-                .ForMember(dest => dest.User, opt => opt.MapFrom(src => src.User.UserName));
-            CreateMap<Tag, TagDTO>();
+            CreateMap<History, HistoryDTO>();
+            CreateMap<Tags, TagDTO>();
             CreateMap<Keywords, KeywordsDTO>();
         }
     }

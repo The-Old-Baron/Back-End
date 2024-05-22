@@ -1,3 +1,6 @@
+using OldBarom.Core.Application.DTOs.Systempunk;
+using OldBarom.Core.Domain.Interface.Systempunk;
+
 namespace OldBarom.Core.Application.Serivces.Systempunk{
     public class HistoryService : IHistoryService{
         private readonly IHistoryRepository _historyRepository;
