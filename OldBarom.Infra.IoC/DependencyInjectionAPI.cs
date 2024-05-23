@@ -2,7 +2,6 @@ using AutoMapper;
 using MediatR;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using OldBarom.Core.Application.Interface;
@@ -10,8 +9,10 @@ using OldBarom.Core.Application.Interface.Systempunk;
 using OldBarom.Core.Application.Mappings;
 using OldBarom.Core.Application.Serivces.Systempunk;
 using OldBarom.Core.Domain.Interface.Account;
+using OldBarom.Core.Domain.Interface.Systempunk;
 using OldBarom.Infra.Data.Context;
 using OldBarom.Infra.Data.Identity;
+using OldBarom.Infra.Data.Repositories.Systempunk;
 
 namespace OldBarom.Infra.IoC
 {

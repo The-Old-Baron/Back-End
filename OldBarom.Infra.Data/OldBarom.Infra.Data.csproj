@@ -22,4 +22,7 @@
 	<ItemGroup>
 	  <ProjectReference Include="..\OldBarom.Core.Domain\OldBarom.Core.Domain.csproj" />
 	</ItemGroup>
+	<ItemGroup>
+	  <Folder Include="Repositories\Base\" />
+	</ItemGroup>
 </Project>
