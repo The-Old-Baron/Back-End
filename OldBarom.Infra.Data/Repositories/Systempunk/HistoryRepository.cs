@@ -40,6 +40,12 @@ namespace OldBarom.Infra.Data.Repositories.Systempunk
             return await _context.Histories.FindAsync(id);
         }
 
+        public async Task<IEnumerable<History>> GetHistoryByName(string name)
+        {
+            var history =  _context.Histories.Where(x => x.Name == name).ToList();
+            return history;
+        }
+
         public async Task<History> UpdateHistory(Guid id, History history)
         {
             _context.Histories.Update(history);

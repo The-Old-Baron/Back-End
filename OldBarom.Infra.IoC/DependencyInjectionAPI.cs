@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using OldBarom.Core.Application.Interface;
+using OldBarom.Core.Application.Interface.Systempunk;
 using OldBarom.Core.Application.Mappings;
 using OldBarom.Core.Application.Serivces.Systempunk;
 using OldBarom.Core.Domain.Interface.Account;

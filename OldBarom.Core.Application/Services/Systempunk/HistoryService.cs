@@ -1,5 +1,4 @@
 using AutoMapper;
-using OldBarom.Core.Application.DTOs.Systempunk;
 using OldBarom.Core.Application.Interface.Systempunk;
 using OldBarom.Core.Domain.Interface.Systempunk;
 using OldBarom.Core.Domain.Model.Systempunk;
@@ -18,34 +17,39 @@ namespace OldBarom.Core.Application.Serivces.Systempunk{
         public async Task<History> AddHistoryAsync(History history)
         {
             var historyEntity = _mapper.Map<History>(history);
-            return await _historyRepository.AddHistoryAsync(historyEntity);
+            return await _historyRepository.AddHistory(historyEntity);
         }
 
         public async Task<History> DeleteHistoryAsync(History history)
         {
             var historyEntity = _mapper.Map<History>(history);
-            return await _historyRepository.DeleteHistoryAsync(historyEntity);
+            return await _historyRepository.DeleteHistory(historyEntity.Id);
         }
 
         public async Task<History> DeleteHistoryAsync(Guid id)
         {
-            return await _historyRepository.DeleteHistoryAsync(id);
+            return await _historyRepository.DeleteHistory(id);
         }
 
         public async Task<IEnumerable<History>> GetHistoryAsync(string name)
         {
-            return await _historyRepository.GetHistoryAsync(name);
+            return await _historyRepository.GetHistoryByName(name);
         }
 
         public async Task<History> GetHistoryAsync(Guid id)
         {
-            return await _historyRepository.GetHistoryAsync(id);
+            return await _historyRepository.GetHistory(id);
+        }
+
+        public Task<IEnumerable<History>> GetHistoryAsync()
+        {
+            return _historyRepository.GetHistories();
         }
 
         public async Task<History> UpdateHistoryAsync(Guid id, History history)
         {
             var historyEntity = _mapper.Map<History>(history);
-            return await _historyRepository.UpdateHistoryAsync(id, historyEntity);
+            return await _historyRepository.UpdateHistory(id, historyEntity);
         }
     }
 }
