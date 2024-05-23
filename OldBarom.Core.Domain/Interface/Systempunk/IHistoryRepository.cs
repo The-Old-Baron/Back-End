@@ -6,8 +6,8 @@ namespace OldBarom.Core.Domain.Interface.Systempunk
     {
         Task<IEnumerable<History>> GetHistories();
         Task<History> GetHistory(Guid id);
-        Task<History> AddHistory(History history);
-        Task<History> UpdateHistory(Guid id, History history);
-        Task<History> DeleteHistory(Guid id);
+        Task AddHistory(History history);
+        Task UpdateHistory(History history);
+        Task DeleteHistory(Guid id);
     }
 }
