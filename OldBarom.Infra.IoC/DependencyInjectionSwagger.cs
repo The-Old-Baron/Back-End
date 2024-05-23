@@ -1,3 +1,7 @@
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.OpenApi.Models;
+
 namespace OldBarom.Infra.IoC{
     public static class DependencyInjectionSwagger{
         public static IServiceCollection AddInfrastructureSwagger(this IServiceCollection services, IConfiguration configuration){

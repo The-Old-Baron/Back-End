@@ -1,6 +1,12 @@
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
+
 namespace OldBarom.Infra.IoC
 {
-    public class DependencyInjectionJWT
+    public static class DependencyInjectionJWT
     {
         public static IServiceCollection AddInfrastructureJWT(this IServiceCollection services, IConfiguration configuration)
         {
@@ -8,7 +14,7 @@ namespace OldBarom.Infra.IoC
             {
                 opt.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
                 opt.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-            }). addJwtBearer(opt =>
+            }).AddJwtBearer(opt =>
             {
                 opt.TokenValidationParameters = new TokenValidationParameters
                 {

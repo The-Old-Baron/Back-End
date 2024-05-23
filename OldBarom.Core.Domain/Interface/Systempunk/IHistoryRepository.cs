@@ -5,9 +5,9 @@ namespace OldBarom.Core.Domain.Interface.Systempunk
     public interface IHistoryRepository
     {
         Task<IEnumerable<History>> GetHistories();
-        Task<History> GetHistory(int id);
-        Task AddHistory(History history);
-        Task UpdateHistory(History history);
-        Task DeleteHistory(int id);
+        Task<History> GetHistory(Guid id);
+        Task<History> AddHistory(History history);
+        Task<History> UpdateHistory(Guid id, History history);
+        Task<History> DeleteHistory(Guid id);
     }
 }
