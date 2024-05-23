@@ -1,3 +1,4 @@
+using OldBarom.Core.Domain.Interface.Account;
 using OldBarom.Infra.IoC;
 var builder = WebApplication.CreateBuilder(args);
 
@@ -20,7 +21,17 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+app.UseStatusCodePages();
+app.UseRouting();
+using (var serviceScope = app.Services.CreateScope())
+{
+    var services = serviceScope.ServiceProvider;
+    var seedUserRoleInitial = services.GetRequiredService<ISeedUserRoleInitial>();
 
+    seedUserRoleInitial.SeedRole();
+    seedUserRoleInitial.SeedUser();
+}
+    app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
