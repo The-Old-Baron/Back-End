@@ -1,7 +1,9 @@
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using OldBarom.Core.Domain.Interface.Account;
+using OldBarom.Infra.Data.Identity;
 using OldBarom.Web.API.Models;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
@@ -14,14 +16,22 @@ namespace OldBarom.Web.API.Controllers{
     {
         private readonly IAuthenticate _authenticate;
         private readonly IConfiguration _configuration;
-
-        public TokenController(IAuthenticate authenticate, IConfiguration configuration)
+        private readonly UserManager<ApplicationUser> _userManager;
+        private readonly RoleManager<IdentityRole> _roleManager;
+        public TokenController(IAuthenticate authenticate, IConfiguration configuration, UserManager<ApplicationUser> applicationUser, RoleManager<IdentityRole> identityRole)
+        {
+            _authenticate = authenticate;
+            _configuration = configuration;
+            _userManager = applicationUser;
+            _roleManager = identityRole;
+        }
+         public TokenController(IAuthenticate authenticate, IConfiguration configuration)
         {
             _authenticate = authenticate;
             _configuration = configuration;
         }
         [AllowAnonymous]
-        [HttpPost]
+        [HttpPost("CreateToken")]
         public async Task<ActionResult<UserToken>> Login([FromBody] LoginModel userInfo)
         {
             var result = await _authenticate.Authenticate(userInfo.Email, userInfo.Password);
@@ -39,7 +49,6 @@ namespace OldBarom.Web.API.Controllers{
         }
 
         [HttpPost("CreateUser")]
-        [ApiExplorerSettings(IgnoreApi = true)]
         [Authorize]
         public async Task<ActionResult> CreateUser([FromBody] LoginModel userInfo)
         {
@@ -59,22 +68,35 @@ namespace OldBarom.Web.API.Controllers{
 
         private UserToken GenerateToken(LoginModel userInfo)
         {
-            //declarações do usuário
+            // Verifica se o usuario Existe
+            var user = _userManager.FindByEmailAsync(userInfo.Email).Result;
+            if (user == null)
+            {
+                return new UserToken();
+            }
+            // Busca as Roles do usuario
+            var roles = _userManager.GetRolesAsync(user).Result;
+
+            //criar as claims
             var claims = new[]
             {
                 new Claim("email", userInfo.Email),
-                new Claim("meuvalor", "teste"),
-                new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
+                new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
+                new Claim(ClaimTypes.Role, roles.FirstOrDefault())
             };
 
             //gerar chave privada para assinar o token
-            var privateKey = new SymmetricSecurityKey(
-                Encoding.UTF8.GetBytes(_configuration["Jwt:SecretKey"]));
+            var secretKey = _configuration["Jwt:SecretKey"];
+            if (secretKey.Length < 32)
+            {
+                throw new Exception("The secret key for JWT must be at least 32 characters long.");
+            }
+            var privateKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(secretKey));
 
             //gerar a assinatura digital
             var credentials = new SigningCredentials(privateKey, SecurityAlgorithms.HmacSha256);
 
-            //definir o tempo de expiração
+            //definir o tempo de expiraï¿½ï¿½o
             var expiration = DateTime.UtcNow.AddMinutes(10);
 
             //gerar o token
