@@ -25,11 +25,6 @@ namespace OldBarom.Web.API.Controllers{
             _userManager = applicationUser;
             _roleManager = identityRole;
         }
-         public TokenController(IAuthenticate authenticate, IConfiguration configuration)
-        {
-            _authenticate = authenticate;
-            _configuration = configuration;
-        }
         [AllowAnonymous]
         [HttpPost("CreateToken")]
         public async Task<ActionResult<UserToken>> Login([FromBody] LoginModel userInfo)
@@ -48,8 +43,8 @@ namespace OldBarom.Web.API.Controllers{
             }
         }
 
-        [HttpPost("CreateUser")]
         [Authorize]
+        [HttpPost("CreateUser")]
         public async Task<ActionResult> CreateUser([FromBody] LoginModel userInfo)
         {
             var result = await _authenticate.Register(userInfo.Email, userInfo.Password);

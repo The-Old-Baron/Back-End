@@ -9,15 +9,17 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infra", "Infra", "{ED2AEA6F
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Web", "Web", "{EF00D4EA-578A-4475-8A25-C8D641E80AE1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OldBarom.Core.Domain", "OldBarom.Core.Domain\OldBarom.Core.Domain.csproj", "{9AAB3F63-807C-4404-8C60-E1913CE2F9BC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OldBarom.Core.Domain", "OldBarom.Core.Domain\OldBarom.Core.Domain.csproj", "{9AAB3F63-807C-4404-8C60-E1913CE2F9BC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OldBarom.Core.Application", "OldBarom.Core.Application\OldBarom.Core.Application.csproj", "{F4DE4AAB-6802-489E-AEE9-2B73801DCD9C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OldBarom.Core.Application", "OldBarom.Core.Application\OldBarom.Core.Application.csproj", "{F4DE4AAB-6802-489E-AEE9-2B73801DCD9C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OldBarom.Infra.IoC", "OldBarom.Infra.IoC\OldBarom.Infra.IoC.csproj", "{4F26B9F2-7522-47AA-AFDE-3D527AFC04DD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OldBarom.Infra.IoC", "OldBarom.Infra.IoC\OldBarom.Infra.IoC.csproj", "{4F26B9F2-7522-47AA-AFDE-3D527AFC04DD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OldBarom.Web.API", "OldBarom.Web.API\OldBarom.Web.API.csproj", "{2F3681FE-51CD-49DB-BD2A-E26C4389061B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OldBarom.Web.API", "OldBarom.Web.API\OldBarom.Web.API.csproj", "{2F3681FE-51CD-49DB-BD2A-E26C4389061B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OldBarom.Infra.Data", "OldBarom.Infra.Data\OldBarom.Infra.Data.csproj", "{A865F0E3-7195-4C8E-8D43-910729D96A1D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OldBarom.Infra.Data", "OldBarom.Infra.Data\OldBarom.Infra.Data.csproj", "{A865F0E3-7195-4C8E-8D43-910729D96A1D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Playground", "Playground\Playground.csproj", "{8D64292F-B20D-4537-BEFE-FE345123FFAB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +47,10 @@ Global
 		{A865F0E3-7195-4C8E-8D43-910729D96A1D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A865F0E3-7195-4C8E-8D43-910729D96A1D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A865F0E3-7195-4C8E-8D43-910729D96A1D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8D64292F-B20D-4537-BEFE-FE345123FFAB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8D64292F-B20D-4537-BEFE-FE345123FFAB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8D64292F-B20D-4537-BEFE-FE345123FFAB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8D64292F-B20D-4537-BEFE-FE345123FFAB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

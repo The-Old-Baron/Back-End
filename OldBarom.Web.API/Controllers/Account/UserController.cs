@@ -36,7 +36,7 @@ namespace OldBarom.Web.API.Controllers.Account{
             if (result.Succeeded)
             {
                 await _userManager.AddToRoleAsync(user, "User");
-                return Ok();
+                return Ok(user);
             }
 
             return BadRequest(result.Errors);
@@ -61,12 +61,29 @@ namespace OldBarom.Web.API.Controllers.Account{
 
             if (result)
             {
-                return Ok();
+                return Ok(user);
             }
 
             return BadRequest("Invalid Login attempt.");
         }
 
+        [HttpPost("ExternalLogin")]
+        public virtual async Task<IActionResult> ExternalLogin([FromBody] ExternalLoginModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var user = await _userManager.FindByEmailAsync(model.Email);
+
+            if (user == null)
+            {
+                return BadRequest("Invalid Login attempt.");
+            }
+
+            return Ok(user);
+        }
         [HttpPost("ChangePassword")]
         public virtual async Task<IActionResult> ChangePassword([FromBody] ChangePasswordModel model)
         {
@@ -86,7 +103,7 @@ namespace OldBarom.Web.API.Controllers.Account{
 
             if (result.Succeeded)
             {
-                return Ok();
+                return Ok(user);
             }
 
             return BadRequest(result.Errors);
@@ -114,93 +131,16 @@ namespace OldBarom.Web.API.Controllers.Account{
             return Ok(users);
         }
 
-        [HttpPost("AddRole")]
-        //[Authorize(Roles = "Admin")]
-        public virtual async Task<IActionResult> AddRole([FromBody] AddRoleModel model)
+        [HttpGet("GetUserRoles")]
+        public virtual async Task<IActionResult> GetUserRoles()
         {
-            var user = await _userManager.FindByEmailAsync(model.Email);
-
-            if (user == null)
+            var userRoles = _userManager.Users.Select(user => new UserRoleModel
             {
-                return BadRequest("Invalid Login attempt.");
-            }
+                Email = user.Email,
+                Role = _userManager.GetRolesAsync(user).Result.FirstOrDefault()
+            }).ToList();
 
-            var result = await _userManager.AddToRoleAsync(user, model.Role);
-
-            if (result.Succeeded)
-            {
-                return Ok();
-            }
-
-            return BadRequest(result.Errors);
-        }
-
-        [HttpPost("RemoveRole")]   
-        //[
-        //Authorize(Roles = "Admin")]
-        public virtual async Task<IActionResult> RemoveRole([FromBody] AddRoleModel model)
-        {
-            var user = await _userManager.FindByEmailAsync(model.Email);
-
-            if (user == null)
-            {
-                return BadRequest("Invalid Login attempt.");
-            }
-
-            var result = await _userManager.RemoveFromRoleAsync(user, model.Role);
-
-            if (result.Succeeded)
-            {
-                return Ok();
-            }
-
-            return BadRequest(result.Errors);
-        }
-
-        [HttpGet("GetRoles")]
-        public virtual async Task<IActionResult> GetRoles()
-        {
-            var roles = _roleManager.Roles.ToList();
-
-            return Ok(roles);
-        }
-
-        [HttpPost("CreateRole")]
-        public virtual async Task<IActionResult> CreateRole([FromBody] CreateRoleModel model)
-        {
-            var role = new IdentityRole
-            {
-                Name = model.Role
-            };
-
-            var result = await _roleManager.CreateAsync(role);
-
-            if (result.Succeeded)
-            {
-                return Ok();
-            }
-
-            return BadRequest(result.Errors);
-        }
-
-        [HttpPost("DeleteRole")]
-        public virtual async Task<IActionResult> DeleteRole([FromBody] CreateRoleModel model)
-        {
-            var role = await _roleManager.FindByNameAsync(model.Role);
-
-            if (role == null)
-            {
-                return BadRequest("Invalid Login attempt.");
-            }
-
-            var result = await _roleManager.DeleteAsync(role);
-
-            if (result.Succeeded)
-            {
-                return Ok();
-            }
-
-            return BadRequest(result.Errors);
+            return Ok(userRoles);
         }
     }
 }
