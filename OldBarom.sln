@@ -19,7 +19,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OldBarom.Web.API", "OldBaro
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OldBarom.Infra.Data", "OldBarom.Infra.Data\OldBarom.Infra.Data.csproj", "{A865F0E3-7195-4C8E-8D43-910729D96A1D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Playground", "Playground\Playground.csproj", "{8D64292F-B20D-4537-BEFE-FE345123FFAB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Playground", "Playground\Playground.csproj", "{8D64292F-B20D-4537-BEFE-FE345123FFAB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OldBarom.Web.Main", "OldBarom.Web.Main\OldBarom.Web.Main.csproj", "{B98F8E48-698A-4660-AC07-B76A43A60FC0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -51,6 +53,10 @@ Global
 		{8D64292F-B20D-4537-BEFE-FE345123FFAB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8D64292F-B20D-4537-BEFE-FE345123FFAB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8D64292F-B20D-4537-BEFE-FE345123FFAB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B98F8E48-698A-4660-AC07-B76A43A60FC0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B98F8E48-698A-4660-AC07-B76A43A60FC0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B98F8E48-698A-4660-AC07-B76A43A60FC0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B98F8E48-698A-4660-AC07-B76A43A60FC0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -61,6 +67,7 @@ Global
 		{4F26B9F2-7522-47AA-AFDE-3D527AFC04DD} = {ED2AEA6F-D97B-4530-8014-6D7F2D9C003A}
 		{2F3681FE-51CD-49DB-BD2A-E26C4389061B} = {EF00D4EA-578A-4475-8A25-C8D641E80AE1}
 		{A865F0E3-7195-4C8E-8D43-910729D96A1D} = {ED2AEA6F-D97B-4530-8014-6D7F2D9C003A}
+		{B98F8E48-698A-4660-AC07-B76A43A60FC0} = {EF00D4EA-578A-4475-8A25-C8D641E80AE1}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {BFCBE25B-2058-469A-A409-03DB1B1FFAE3}
