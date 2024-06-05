@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using OldBarom.Core.Application.Interface.Base;
+using OldBarom.Core.Domain.Model.Base;
 
 namespace OldBarom.Web.API.Controllers.Base
 {

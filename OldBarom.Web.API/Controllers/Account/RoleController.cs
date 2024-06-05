@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using OldBarom.Infra.Data.Identity;
+using OldBarom.Web.API.Models;
 
 namespace OldBarom.Web.API.Controllers.Account
 {

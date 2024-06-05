@@ -4,9 +4,12 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using OldBarom.Core.Domain.Interface.Account;
 using OldBarom.Infra.Data.Identity;
+using OldBarom.Web.API.Models;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
+using System.Text.Json;
+using System.Threading.Tasks;
 
 namespace OldBarom.Web.API.Controllers.Account
 {
@@ -31,6 +34,10 @@ namespace OldBarom.Web.API.Controllers.Account
         {
             var result = await _authenticate.Authenticate(userInfo.Email, userInfo.Password);
 
+            int b = 0;
+
+            if(b % 2 == 0)
+            
             if (result)
             {
                 return GenerateToken(userInfo);
