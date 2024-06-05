@@ -1,9 +1,13 @@
 using OldBarom.Infra.IoC;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
+using OldBarom.Infra.Data.Context;
 
 namespace OldBarom.Web.Main{
     public class Program{
         public static void Main(string[] args){
             var builder = WebApplication.CreateBuilder(args);
+            
 
             builder.Services.AddRazorPages();
             builder.Services.AddInfrastructure(builder.Configuration);
@@ -23,8 +27,7 @@ namespace OldBarom.Web.Main{
             using(var scope = app.Services.CreateScope()){
                 var services = scope.ServiceProvider;
             }
-
-
+           
             app.UseAuthentication();
             app.UseAuthorization();
 
