@@ -16,18 +16,21 @@ jobs:
     - name: Setup .NET Core
       uses: actions/setup-dotnet@v1
       with:
-        dotnet-version: 7.0.100
+        dotnet-version: 8.0.100
 
     - name: Install dependencies
       run: dotnet restore
-  build:
+
+  Build:
+    needs: Configure
     runs-on: windows-latest
 
     steps:
     - name: Build
       run: dotnet build --configuration Release --no-restore
-  
+
   Test:
+    needs: Build
     runs-on: windows-latest
 
     steps:
@@ -35,6 +38,7 @@ jobs:
       run: dotnet test --no-restore --verbosity normal
 
   Publish:
+    needs: Test
     runs-on: windows-latest
 
     steps:
