@@ -1,5 +1,5 @@
+﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace OldBarom.Core.Domain.Model.Base
 {
@@ -8,7 +8,7 @@ namespace OldBarom.Core.Domain.Model.Base
     {
         [Key]
         public int Id { get; set; }
-        public string Name { get; set; }
+        public required string Name { get; set; }
 
         public Tags()
         {

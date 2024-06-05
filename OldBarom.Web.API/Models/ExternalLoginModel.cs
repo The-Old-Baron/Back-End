@@ -1,4 +1,4 @@
-namespace OldBarom.Web.API.Models
+﻿namespace OldBarom.Web.API.Models
 {
     public class ExternalLoginModel
     {

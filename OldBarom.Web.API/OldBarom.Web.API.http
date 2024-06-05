@@ -1,4 +1,4 @@
-@OldBarom.Web.API_HostAddress = http://localhost:5248
+@OldBarom.Web.API_HostAddress = http://localhost:5161
 
 GET {{OldBarom.Web.API_HostAddress}}/weatherforecast/
 Accept: application/json

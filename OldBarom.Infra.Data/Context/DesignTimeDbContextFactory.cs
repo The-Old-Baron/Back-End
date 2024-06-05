@@ -9,7 +9,7 @@ namespace OldBarom.Infra.Data.Context
         {
             var optionsBuilder = new DbContextOptionsBuilder<ApplicationDbContext>();
             // Connect to the database MS SQL Server
-            optionsBuilder.UseSqlServer("Server=(LocalDb)\\MSSQLLocalDB;Database=OldBarom;Trusted_Connection=True;MultipleActiveResultSets=true");
+            object value = optionsBuilder.UseSqlServer("Server=(LocalDb)\\MSSQLLocalDB;Database=OldBarom;Trusted_Connection=True;MultipleActiveResultSets=true");
 
             return new ApplicationDbContext(optionsBuilder.Options);
         }
