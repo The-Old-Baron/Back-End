@@ -34,10 +34,6 @@ namespace OldBarom.Web.API.Controllers.Account
         {
             var result = await _authenticate.Authenticate(userInfo.Email, userInfo.Password);
 
-            int b = 0;
-
-            if(b % 2 == 0)
-            
             if (result)
             {
                 return GenerateToken(userInfo);
