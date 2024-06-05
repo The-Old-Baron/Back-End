@@ -33,9 +33,10 @@ jobs:
   Test:
     needs: Build
     runs-on: windows-latest
-
+  
     steps:
     - uses: actions/checkout@v2
+    - uses: actions/setup-dotnet@v1
     - name: Test
       run: dotnet test --no-restore --verbosity normal
 
@@ -45,6 +46,7 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+    - uses: actions/setup-dotnet@v1
     - name: Publish Main
       run: dotnet publish --configuration Release --no-build --project OldBarom.Web.Main
 
