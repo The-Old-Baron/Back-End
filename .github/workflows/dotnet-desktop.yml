@@ -1,19 +1,23 @@
-name: .NET Core CI
+# CI AND CD
+
+name: .NET Desktop
 
 on:
   push:
-    branches: [ devl ]
+    branches: [ main ]
   pull_request:
-    branches: [ devl ]
+    branches: [ main ]
 
 jobs:
-  Configure:
+
+  build:
+
     runs-on: windows-latest
 
     steps:
     - uses: actions/checkout@v2
 
-    - name: Setup .NET Core
+    - name: Setup .NET Desktop
       uses: actions/setup-dotnet@v1
       with:
         dotnet-version: 8.0.100
@@ -21,37 +25,13 @@ jobs:
     - name: Install dependencies
       run: dotnet restore
 
-  Build:
-    needs: Configure
-    runs-on: windows-latest
-
-    steps:
-    - uses: actions/checkout@v2
     - name: Build
-      run: dotnet build --configuration Release --no-restore
+      run: dotnet build --configuration Release
 
-  Test:
-    needs: Build
-    runs-on: windows-latest
-  
-    steps:
-    - uses: actions/checkout@v2
-    - uses: actions/setup-dotnet@v1
-    - name: Setup .NET Core
-      run: dotnet tool install --global dotnet-reportgenerator-globaltool
     - name: Test
       run: dotnet test --no-restore --verbosity normal
 
-  Publish:
-    needs: Test
-    runs-on: windows-latest
+    - name: Publish
+      run: dotnet publish
 
-    steps:
-    - uses: actions/checkout@v2
-    - uses: actions/setup-dotnet@v1
-    - name: Publish Main
-      run: dotnet publish --configuration Release --no-build --project OldBarom.Web.Main
-
-    - name: Publish API
-      run: dotnet publish --configuration Release --no-build --project OldBarom.Web.API
     
