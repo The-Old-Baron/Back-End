@@ -1,6 +1,9 @@
+using OldBarom.Infra.IoC;
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+builder.Services.AddInfrastructure(builder.Configuration);
+builder.Services.AddIdentity(builder.Configuration);
+
 builder.Services.AddRazorPages();
 
 var app = builder.Build();
@@ -18,6 +21,7 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapRazorPages();
