@@ -32,8 +32,7 @@ jobs:
       run: dotnet test --no-restore --verbosity normal
 
     - name: Publish API
-      run: dotnet publish --configuration Release --no-build --project OldBarom.Web.API
+      run: dotnet publish --configuration Release
     - name: Publish Main
-      run: dotnet publish --configuration Release --no-build --project OldBarom.Web.Main
-
+      run: dotnet publish --configuration Release
     
