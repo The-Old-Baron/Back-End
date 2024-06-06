@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Identity;
-using OldBarom.Core.Domain.Account;
+using OldBarom.Core.Domain.Interface.Account;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,16 +10,18 @@ namespace OldBarom.Infra.Data.Identity
 {
     public class AuthenticateService : IAuthenticate
     {
-        private readonly UserManager<IdentityUser> _userManager;
-        private readonly SignInManager<IdentityUser> _signInManager;
-        public AuthenticateService(UserManager<IdentityUser> userManager, SignInManager<IdentityUser> signInManager)
+        private readonly UserManager<ApplicationUser> _userManager;
+        private readonly SignInManager<ApplicationUser> _signInManager;
+
+        public AuthenticateService(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager)
         {
             _userManager = userManager;
             _signInManager = signInManager;
         }
-        public async Task<bool> Authenticate(string username, string password)
+
+        public async Task<bool> Authenticate(string email, string password)
         {
-            var result = await _signInManager.PasswordSignInAsync(username, password, false, lockoutOnFailure: false);
+            var result = await _signInManager.PasswordSignInAsync(email, password, false, false);
             return result.Succeeded;
         }
 
@@ -28,13 +30,22 @@ namespace OldBarom.Infra.Data.Identity
             await _signInManager.SignOutAsync();
         }
 
-        public async Task<bool> RegisterUser(string username, string password)
+        public async Task<bool> Register(string email, string password)
         {
-            var user = new ApplicationUser { UserName = username, Email = username };   
-            var result = await _userManager.CreateAsync(user, password);   
-            if (result.Succeeded)   
-                await _signInManager.SignInAsync(user, isPersistent: false);
-            return result.Succeeded;
+            var user = new ApplicationUser
+            {
+                UserName = email,
+                Email = email
+            };
+
+            var result = await _userManager.CreateAsync(user, password);
+
+            if (result.Succeeded)
+            {
+                await _signInManager.SignInAsync(user, false);
+                return true;
+            }
+            return false;
         }
     }
 }
