@@ -10,7 +10,7 @@ namespace OldBarom.Core.Domain.Model.Base
         public int Id { get; set; }
         public string Name { get; set; }
         public int KeywordTypeID { get; set; }
-
+        
         public Keywords()
         {
         }
