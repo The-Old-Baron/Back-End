@@ -1,18 +1,20 @@
-using AutoMapper;
+﻿using AutoMapper;
 using MediatR;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using OldBarom.Core.Application.Interface;
 using OldBarom.Core.Application.Interface.Systempunk;
-using OldBarom.Core.Application.Mappings;
-using OldBarom.Core.Application.Serivces.Systempunk;
+using OldBarom.Core.Application.Mapping;
+using OldBarom.Core.Application.Services.Systempunk;
 using OldBarom.Core.Domain.Interface.Account;
-using OldBarom.Core.Domain.Interface.Systempunk;
 using OldBarom.Infra.Data.Context;
 using OldBarom.Infra.Data.Identity;
-using OldBarom.Infra.Data.Repositories.Systempunk;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace OldBarom.Infra.IoC
 {
@@ -36,13 +38,13 @@ namespace OldBarom.Infra.IoC
             services.AddScoped<IAuthenticate, AuthenticateService>();
             services.AddScoped<ISeedUserRoleInitial, SeedUserRoleInitial>();
 
-            services.AddScoped<IHistoryRepository, HistoryRepository>();
+            //services.AddScoped<IHistoryRepository, HistoryRepository>();
             services.AddScoped<IHistoryService, HistoryService>();
 
             services.Add(new ServiceDescriptor(typeof(IMapper), new Mapper(new MapperConfiguration(cfg => cfg.AddProfile(new DTOtoCommandMappingProfile())))));
 
             var myHandlers = AppDomain.CurrentDomain.Load("OldBarom.Core.Application");
-            services.AddMediatR(myHandlers);  
+            services.AddMediatR(myHandlers);
 
             return services;
         }

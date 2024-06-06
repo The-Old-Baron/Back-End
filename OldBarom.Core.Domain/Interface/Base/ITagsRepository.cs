@@ -1,6 +1,11 @@
-using OldBarom.Core.Domain.Model.Base;
+﻿using OldBarom.Core.Domain.Model.Base;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace OldBarom.Core.Domain.Interface.Systempunk
+namespace OldBarom.Core.Domain.Interface.Base
 {
     public interface ITagsRepository
     {

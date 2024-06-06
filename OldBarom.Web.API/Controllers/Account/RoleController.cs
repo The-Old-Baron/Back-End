@@ -1,14 +1,15 @@
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 using OldBarom.Infra.Data.Identity;
 using OldBarom.Web.API.Models;
-using Microsoft.AspNetCore.Authorization;
 
-namespace OldBarom.Web.API.Controllers.Account{
-        [Route("api/[controller]")]
-        [ApiController]
-        public class RoleController : ControllerBase{
+namespace OldBarom.Web.API.Controllers.Account
+{
+    [Route("api/[controller]")]
+    [ApiController]
+    public class RoleController : ControllerBase
+    {
         public readonly RoleManager<IdentityRole> _roleManager;
         public readonly UserManager<ApplicationUser> _userManager;
 
@@ -19,7 +20,7 @@ namespace OldBarom.Web.API.Controllers.Account{
         }
 
         [HttpPost("CreateRole")]
-        [Authorize(Roles="Admin")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> CreateRole([FromBody] string roleName)
         {
             if (!ModelState.IsValid)
@@ -43,7 +44,7 @@ namespace OldBarom.Web.API.Controllers.Account{
         }
 
         [HttpPost("AddUserRole")]
-        [Authorize(Roles="Admin")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> AddUserRole([FromBody] UserRoleModel model)
         {
             if (!ModelState.IsValid)
@@ -69,7 +70,7 @@ namespace OldBarom.Web.API.Controllers.Account{
         }
 
         [HttpPost("RemoveUserRole")]
-        [Authorize(Roles="Admin")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> RemoveUserRole([FromBody] UserRoleModel model)
         {
             if (!ModelState.IsValid)
@@ -95,7 +96,7 @@ namespace OldBarom.Web.API.Controllers.Account{
         }
 
         [HttpPost("DeleteRole")]
-        [Authorize(Roles="Admin")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> DeleteRole([FromBody] string roleName)
         {
             if (!ModelState.IsValid)
@@ -121,7 +122,7 @@ namespace OldBarom.Web.API.Controllers.Account{
         }
 
         [HttpGet("GetAllRoles")]
-        [Authorize(Roles="Admin")]
+        [Authorize(Roles = "Admin")]
         public IActionResult GetAllRoles()
         {
             var roles = _roleManager.Roles;
@@ -129,6 +130,5 @@ namespace OldBarom.Web.API.Controllers.Account{
             return Ok(roles);
         }
 
-        
     }
 }

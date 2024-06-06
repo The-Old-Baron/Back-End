@@ -1,15 +1,17 @@
-using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using OldBarom.Infra.Data.Identity;
 using OldBarom.Web.API.Models;
 
-namespace OldBarom.Web.API.Controllers.Account{
+namespace OldBarom.Web.API.Controllers.Account
+{
     [Route("api/[controller]")]
     [ApiController]
-    public class UserController : ControllerBase{
+    public class UserController : ControllerBase
+    {
         private readonly UserManager<ApplicationUser> _userManager;
-        private readonly RoleManager<IdentityRole> _roleManager;   
+        private readonly RoleManager<IdentityRole> _roleManager;
 
         public UserController(UserManager<ApplicationUser> userManager, RoleManager<IdentityRole> roleManager)
         {

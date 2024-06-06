@@ -15,6 +15,5 @@ namespace OldBarom.Core.Application.Interface.Systempunk
         Task<History> DeleteHistoryAsync(History history);
         Task<History> DeleteHistoryAsync(Guid id);
         Task<History> UpdateHistoryAsync(Guid id, History history);
-            
     }
 }

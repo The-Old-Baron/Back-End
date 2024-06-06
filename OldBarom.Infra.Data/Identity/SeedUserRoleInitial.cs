@@ -38,7 +38,7 @@ namespace OldBarom.Infra.Data.Identity
 
         public void SeedUser()
         {
-            if(_userManager.FindByEmailAsync("ROOT@ROOT").Result == null)
+            if (_userManager.FindByEmailAsync("ROOT@ROOT").Result == null)
             {
                 ApplicationUser user = new ApplicationUser();
                 user.UserName = "ROOT@ROOT";
@@ -46,7 +46,7 @@ namespace OldBarom.Infra.Data.Identity
                 user.EmailConfirmed = true;
 
                 IdentityResult result = _userManager.CreateAsync(user, "ROOT@ROOT").Result;
-                
+
             }
         }
     }

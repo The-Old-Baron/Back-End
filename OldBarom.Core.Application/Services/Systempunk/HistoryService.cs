@@ -1,9 +1,10 @@
-using AutoMapper;
+﻿using AutoMapper;
 using OldBarom.Core.Application.Interface.Systempunk;
 using OldBarom.Core.Domain.Interface.Systempunk;
 using OldBarom.Core.Domain.Model.Systempunk;
 
-namespace OldBarom.Core.Application.Serivces.Systempunk{
+namespace OldBarom.Core.Application.Services.Systempunk
+{
     public class HistoryService : IHistoryService
     {
         private readonly IHistoryRepository _historyRepository;

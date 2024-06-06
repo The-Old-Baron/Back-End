@@ -1,11 +1,10 @@
-using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.UI.V5.Pages.Account.Internal;
-using Microsoft.Extensions.Configuration;
-using Microsoft.IdentityModel.Tokens;
+﻿using Microsoft.AspNetCore.Identity;
 using OldBarom.Core.Domain.Interface.Account;
-using System.IdentityModel.Tokens.Jwt;
-using System.Security.Claims;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace OldBarom.Infra.Data.Identity
 {
@@ -41,7 +40,7 @@ namespace OldBarom.Infra.Data.Identity
 
             var result = await _userManager.CreateAsync(user, password);
 
-            if(result.Succeeded)
+            if (result.Succeeded)
             {
                 await _signInManager.SignInAsync(user, false);
                 return true;

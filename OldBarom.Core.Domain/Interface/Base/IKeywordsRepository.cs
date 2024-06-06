@@ -1,7 +1,6 @@
+﻿using OldBarom.Core.Domain.Model.Base;
 
-using OldBarom.Core.Domain.Model.Base;
-
-namespace OldBarom.Core.Domain.Interface.Systempunk
+namespace OldBarom.Core.Domain.Interface.Base
 {
     public interface IKeywordsRepository
     {
