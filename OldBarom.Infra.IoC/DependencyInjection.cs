@@ -1,42 +1,64 @@
-﻿
+﻿using AutoMapper;
+using MediatR;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using OldBarom.Core.Application.Mappings;
-using OldBarom.Core.Domain.Account;
-using OldBarom.Core.Domain.Interfaces;
-using OldBarom.Infra.Data.Configure;
+using OldBarom.Core.Application.Interface.Systempunk;
+using OldBarom.Core.Application.Mapping;
+using OldBarom.Core.Application.Services.Systempunk;
+using OldBarom.Core.Domain.Interface.Account;
+using OldBarom.Core.Domain.Interface.Systempunk;
 using OldBarom.Infra.Data.Context;
 using OldBarom.Infra.Data.Identity;
-using OldBarom.Infra.Data.Repositories;
 
 namespace OldBarom.Infra.IoC
 {
     public static class DependencyInjection
     {
-        public static IServiceCollection AddInfrastructure(this IServiceCollection services, IConfiguration configuration) {
+        public static IServiceCollection AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
+        {
             services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlServer(configuration.GetConnectionString("DefaultConnection"),
-                b => b.MigrationsAssembly(typeof(ApplicationDbContext).Assembly.FullName)));
-
-            services.AddIdentity<ApplicationUser, IdentityRole>()
+                options.UseSqlServer(
+                    configuration.GetConnectionString("DefaultConnection"),
+                    b => b.MigrationsAssembly(typeof(ApplicationDbContext).Assembly.FullName)));
+            services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true)
+                .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
+            services.AddControllersWithViews();
+            services.AddRazorPages();
+            // services.AddIdentity<ApplicationUser, IdentityRole>()
+            //     .AddEntityFrameworkStores<ApplicationDbContext>()
+            //     .AddDefaultTokenProviders();
+            services.ConfigureApplicationCookie(options =>
+            {
+                options.LoginPath = "/Identity/Account/Login";
+                options.AccessDeniedPath = "/Identity/Account/AccessDenied";
+            });
 
-            services.ConfigureApplicationCookie(options => options.AccessDeniedPath = "/Account/Login");
+
 
             services.AddScoped<IAuthenticate, AuthenticateService>();
-            services.AddScoped<ISeedUserRoleInitial, UserConfigure>();
+            services.AddScoped<ISeedUserRoleInitial, SeedUserRoleInitial>();
 
-            services.AddScoped<IHistoryRepository, HistoryRepository>();
-            services.AddScoped<ITagRepository, TagRepository>();
+            //services.AddScoped<IHistoryRepository, HistoryRepository>();
+            services.AddScoped<IHistoryService, HistoryService>();
 
-            services.AddAutoMapper(typeof(DomainToDTOMappingProfile));
+            services.Add(new ServiceDescriptor(typeof(IMapper), new Mapper(new MapperConfiguration(cfg => cfg.AddProfile(new DTOtoCommandMappingProfile())))));
 
-            // Configure MediatR 
-            //services.AddMediatR(Assembly.GetExecutingAssembly());
-            
+            var myHandlers = AppDomain.CurrentDomain.Load("OldBarom.Core.Application");
+            services.AddMediatR(myHandlers);
+
+            return services;
+        }
+        public static IServiceCollection AddIdentity(this IServiceCollection services, IConfiguration configuration)
+        {
+            services.ConfigureApplicationCookie(options =>
+            {
+                options.LoginPath = "/Identity/Account/Login";
+                options.AccessDeniedPath = "/Identity/Account/AccessDenied";
+            });
 
             return services;
         }

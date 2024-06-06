@@ -1,10 +1,12 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using OldBarom.Core.Domain.Entities.Systempunk;
+using OldBarom.Core.Domain.Model.Base;
+using OldBarom.Core.Domain.Model.Systempunk;
 using OldBarom.Infra.Data.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.Emit;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -15,12 +17,13 @@ namespace OldBarom.Infra.Data.Context
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options) { }
 
         public DbSet<History> Histories { get; set; }
-        public DbSet<Tag> Tags { get; set; }
+        public DbSet<Keywords> Keywords { get; set; }
+        public DbSet<Tags> Tags { get; set; }
 
-        protected override void OnModelCreating(ModelBuilder builder)
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            base.OnModelCreating(builder);
-            builder.ApplyConfigurationsFromAssembly(typeof(ApplicationDbContext).Assembly);
+            base.OnModelCreating(modelBuilder);
+            modelBuilder.ApplyConfigurationsFromAssembly(typeof(ApplicationDbContext).Assembly);
         }
     }
 }

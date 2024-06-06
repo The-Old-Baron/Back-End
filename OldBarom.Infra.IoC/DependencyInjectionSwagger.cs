@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Models;
 using System;
 using System.Collections.Generic;
@@ -8,13 +9,13 @@ using System.Threading.Tasks;
 
 namespace OldBarom.Infra.IoC
 {
-    public static class DependecyInjectionSwagger
+    public static class DependencyInjectionSwagger
     {
-        public static IServiceCollection AddInfrastructureSwagger(this IServiceCollection services)
+        public static IServiceCollection AddInfrastructureSwagger(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "CleanArchMVC.API", Version = "v1" });
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "OldBarom.Infra.IoC", Version = "v1" });
                 c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme()
                 {
                     Name = "Authorization",

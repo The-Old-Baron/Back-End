@@ -1,49 +1,56 @@
-﻿
-using AutoMapper;
-using OldBarom.Core.Application.DTOs.Systempunk;
-using OldBarom.Core.Application.Interfaces.Systempunk;
-using OldBarom.Core.Domain.Entities.Systempunk;
-using OldBarom.Core.Domain.Interfaces;
+﻿using AutoMapper;
+using OldBarom.Core.Application.Interface.Systempunk;
+using OldBarom.Core.Domain.Interface.Systempunk;
+using OldBarom.Core.Domain.Model.Systempunk;
 
 namespace OldBarom.Core.Application.Services.Systempunk
 {
     public class HistoryService : IHistoryService
     {
-        private IHistoryRepository _historyService;
+        private readonly IHistoryRepository _historyRepository;
         private readonly IMapper _mapper;
-        public HistoryService(IHistoryRepository historyService, IMapper mapper)
+
+        public HistoryService(IHistoryRepository historyRepository, IMapper mapper)
         {
-            _historyService = historyService;
+            _historyRepository = historyRepository;
             _mapper = mapper;
         }
-
-        public async Task Add(HistoryDTO historyDTO)
+        public async Task<History> AddHistoryAsync(History history)
         {
-            var historyEntity = _mapper.Map<History>(historyDTO);
-            await _historyService.CreateAsync(historyEntity);
+            var historyEntity = _mapper.Map<History>(history);
+            return await _historyRepository.AddHistory(historyEntity);
         }
 
-        public async Task Delete(int id)
+        public async Task<History> DeleteHistoryAsync(History history)
         {
-            await _historyService.DeleteAsync(id);
+            var historyEntity = _mapper.Map<History>(history);
+            return await _historyRepository.DeleteHistory(historyEntity.Id);
         }
 
-        public async Task<IEnumerable<HistoryDTO>> GetHistories()
+        public async Task<History> DeleteHistoryAsync(Guid id)
         {
-            var historiesEntity = await _historyService.GetHistoriesAsync();
-            return _mapper.Map<IEnumerable<HistoryDTO>>(historiesEntity);
+            return await _historyRepository.DeleteHistory(id);
         }
 
-        public async Task<HistoryDTO> GetHistory(int id)
+        public async Task<IEnumerable<History>> GetHistoryAsync(string name)
         {
-            var historyEntity = await _historyService.GetHistoryByID(id);
-            return _mapper.Map<HistoryDTO>(historyEntity);
+            return await _historyRepository.GetHistoryByName(name);
         }
 
-        public async Task Update(HistoryDTO historyDTO)
+        public async Task<History> GetHistoryAsync(Guid id)
         {
-            var historyEntity = _mapper.Map<History>(historyDTO);
-            await _historyService.UpdateAsync(historyEntity);
+            return await _historyRepository.GetHistory(id);
+        }
+
+        public Task<IEnumerable<History>> GetHistoryAsync()
+        {
+            return _historyRepository.GetHistories();
+        }
+
+        public async Task<History> UpdateHistoryAsync(Guid id, History history)
+        {
+            var historyEntity = _mapper.Map<History>(history);
+            return await _historyRepository.UpdateHistory(id, historyEntity);
         }
     }
 }
